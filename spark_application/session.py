@@ -2,11 +2,14 @@
 Module to keep a shared spark session
 """
 
+import logging
 import findspark
 
 findspark.init()
 
 from pyspark.sql import SparkSession
+
+logger = logging.getLogger(__name__)
 
 
 def session():
