@@ -18,6 +18,17 @@ class MyEntity(Entity):
         self.data = data
 
 
+class EntityWithWrongSchemaType(Entity):
+
+    @property
+    def schema(self):
+        schema = 'Awesome Schema'
+        return schema
+
+    def get_data(self, data):
+        self.data = data
+
+
 class TestBaseEntity(unittest.TestCase):
 
     def setUp(self) -> None:
@@ -25,6 +36,9 @@ class TestBaseEntity(unittest.TestCase):
 
     def tearDown(self) -> None:
         pass
+
+    def test_wrong_schema_type_raises_error(self):
+        self.assertRaises(TypeError, EntityWithWrongSchemaType)
 
     def test_wrong_data_type_raises_error(self):
         data = [['A', 1], ['B', 2]]
