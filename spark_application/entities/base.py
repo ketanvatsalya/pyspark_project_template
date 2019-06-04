@@ -5,6 +5,7 @@ base entities module
 from abc import abstractmethod
 from spark_application import session
 from pyspark.sql.dataframe import DataFrame
+from pyspark.sql.types import StructType
 
 
 class Entity(object):
@@ -18,17 +19,16 @@ class Entity(object):
 
     def __init__(self, *args, **kwargs):
         self.session = session()
+
+        if not isinstance(self.schema, StructType):
+            raise TypeError('Entity schema must be of type : {type}'.format(type=repr(StructType())))
+
         self.get_data(*args, **kwargs)
 
     @property
     @abstractmethod
     def schema(self):
-        return self.__schema
-
-    @schema.setter
-    def schema(self, value):
-        # TODO assert schema has valid type
-        self.__schema = value
+        pass
 
     @property
     def data(self):
