@@ -1,3 +1,7 @@
+import findspark
+
+findspark.init()
+
 from .session import session
 
 from . import entities
