@@ -9,8 +9,8 @@ from pyspark.sql import SparkSession
 logger = logging.getLogger(__name__)
 
 
-def session():
+def session(app_name='PySparkJob'):
     """
     :return: A spark session object
     """
-    return SparkSession.builder.getOrCreate()
+    return SparkSession.builder.appName(app_name).getOrCreate()
