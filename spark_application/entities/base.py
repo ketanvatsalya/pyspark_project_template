@@ -14,7 +14,6 @@ class Entity(object):
     
     """
 
-    __schema = None
     __data = None
 
     def __init__(self, *args, **kwargs):
